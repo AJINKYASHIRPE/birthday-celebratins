@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎂 Happy Birthday! 🎉</title>
+    <style>
+        body {
+            background: black;
+            color: white;
+            text-align: center;
+            font-family: Arial, sans-serif;
+            overflow: hidden;
+            position: relative;
+            animation: backgroundChange 10s infinite alternate;
+        }
+
+        @keyframes backgroundChange {
+            0% { background: black; }
+            50% { background: #1a1a40; }
+            100% { background: #4b0082; }
+        }
+
+        h1 {
+            font-size: 50px;
+            color: #ffcc00;
+            text-shadow: 0 0 20px #ffcc00, 0 0 40px #ff6600;
+            animation: colorChange 5s infinite alternate;
+        }
+
+        @keyframes colorChange { 
+            0% { color: #ffcc00; } 
+            50% { color: #ff6600; } 
+            100% { color: #ff00ff; } 
+        }
+
+        .photo-container {
+            margin-top: 10px; /* Adjusted to fit space properly */
+        }
+
+        .photo {
+            width: 150px;
+            height: 200px;
+            border-radius: 10px%;
+            border: 5px solid #ffcc00;
+            box-shadow: 0 0 10px #ff6600;
+        }
+
+        .gift-box {
+            font-size: 30px;
+            cursor: pointer;
+            animation: bounce 2s infinite, glow 1.5s infinite alternate;
+            display: block;
+            margin: 30px auto; /* Moved slightly lower */
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        @keyframes glow {
+            from { text-shadow: 0 0 10px #ffcc00; }
+            to { text-shadow: 0 0 20px #ff6600; }
+        }
+
+        .message {
+            font-size: 24px;
+            color: #ffcc00;
+            display: none;
+            animation: fadeIn 2s ease-in-out forwards;
+        }
+
+        .balloon {
+            position: absolute;
+            font-size: 40px;
+            animation: floatUp 7s linear forwards; /* Increased duration to reach higher */
+            cursor: pointer;
+            text-align: center;
+        }
+
+        @keyframes floatUp {
+            0% { transform: translateY(100vh); opacity: 1; }
+            85% { transform: translateY(50px); opacity: 1; } /* Balloons stop closer to Happy Birthday */
+            100% { transform: translateY(50px); opacity: 1; }
+        }
+
+        .balloon-text {
+            display: block;
+            font-size: 18px;
+            background: rgba(255, 255, 255, 0.8);
+            padding: 5px;
+            border-radius: 5px;
+            margin-top: -20px;
+            text-shadow: none;
+            color: black;
+        }
+
+        .heart {
+            position: absolute;
+            color: red;
+            font-size: 40px;
+            top: -50px;
+            animation: fallHearts 5s linear forwards;
+        }
+
+        @keyframes fallHearts {
+            from { transform: translateY(-50px); opacity: 1; }
+            to { transform: translateY(100vh); opacity: 0; }
+        }
+
+        .firecracker {
+            position: absolute;
+            font-size: 50px;
+            animation: explode 1s ease-out forwards;
+        }
+
+        @keyframes explode {
+            0% { opacity: 1; transform: scale(1); }
+            100% { opacity: 0; transform: scale(2); }
+        }
+    </style>
+</head>
+<body onload="startCelebration()">
+
+    <h1>🎉 Happy Birthday <span id="name">Janhavi </span>! 🎂</h1>
+
+    <div class="photo-cirz">
+        <img class="photo" src="https://media-hosting.imagekit.io//25c210f420154fe2/WhatsApp%20Image%202025-03-16%20at%2000.31.01_239d4fd5.jpg?Expires=1836673293&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=BhS1j6NxDLOVhZWWl9tLwVYwqQolh0TVJl~Rd7VEilPnHTTd2jgXYltwfXOMxoYi~J5~K5GXyWuI-BpyIVcnuB5juCFI-IDIsh5e-ocppjn0t~8D00HbzNPKg58p-1TcyG~StApo2ajZxpGBt~si4TKcts3ZUb33yrbFVWw21DgLBwI4vf7DBtW8RvWQt2K8qs8Wj9-v25GoumsJj4Z2ZgUIpqDhNDR8aj9VlFAowMsFkRHed7264qmDHTCY2Q6WaQRipwyz6bpjq4RVu32WD0KFwFJkxycwKKugHU~02qHq~HAOZB9zrC0lILfZoQpLnEVo7pp8tL8FQeCzqBbOXw__" alt="Birthday Person">
+    </div>
+
+    <div class="gift-box" onclick="openGift()">🎁</div>
+    <p class="message" id="message">🎊 Wishing you endless happiness, love, and success! 🎊</p>
+
+    <script>
+        function startCelebration() {
+            setInterval(createBalloons, 3000);
+            setInterval(createFallingHearts, 2000);
+            firecrackerEffect(); 
+        }
+
+        function createBalloons() {
+            const balloon = document.createElement("div");
+            balloon.classList.add("balloon");
+            balloon.style.left = Math.random() * (window.innerWidth - 50) + "px";
+            balloon.innerHTML = "🎈";
+
+            const balloonText = document.createElement("div");
+            balloonText.classList.add("balloon-text");
+            balloonText.innerHTML = getRandomMessage();
+
+            balloon.appendChild(balloonText);
+            document.body.appendChild(balloon);
+
+            setTimeout(() => balloon.remove(), 7000); /* Matches updated floatUp timing */
+        }
+
+        function getRandomMessage() {
+            let messages = ["🎉💝🎂 Enjoy your special day! 🎂🎉💝", "Have a fantastic day!", "💝🎉 Lots of love! 🎉💝", "🎉🎂 Wishing you endless happiness! 🎂🎉","🎉💝🎂 A day to shine! Stay awesome! 🎂💝🎉","💝🎂🎉🎉 Have fun! 🎉🎉🎂💝","💝🎉🎂Happy Birthday! 💝🎉🎂"," 💝🎉🎂 Stay blessed! 🎂🎉💝","🎂🎉 Sweetest day ever! 🎉🥰🎂 Celebrate! 🎂🎉","🥰Wishing smiles! 🎂 Stay happy! 🥰"];
+            return messages[Math.floor(Math.random() * messages.length)];
+        }
+
+        function openGift() {
+            let message = document.getElementById("message");
+            message.style.display = "block";
+            message.innerHTML = getRandomWish();
+            firecrackerEffect();
+            setTimeout(() => message.style.display = "none", 10000);
+        }
+
+        function getRandomWish() {
+            let wishes = [
+                "🎂🎉A magical day, a special you! 🥰🎂Happy Birthday with love so true! 🎂🎉","❤🎊 Keep smiling,you look sunshine when you smile! 🎊❤" ,"💝🎂 May your birthday be as bright as your smile! 🎂💝", "🥳💝🎂🎉 Wishing you love and happiness always! 🎂🎉💝🥳","🥰Balloons floating, candles glowing, hearts celebrating YOU! 🥰",
+                "🎂💝🎉A sprinkle of fun, a dash of delight! 🎉Hope your day is happy and bright! 🎉🎂💝",
+                "🎈 Celebrate today with lots of smiles and fun! 🎈",
+                "✨ May your dreams come true this year! ✨","🎂💝 A magical day, a special you!  Happy Birthday with love so true! 🎂💝"
+            ];
+            return wishes[Math.floor(Math.random() * wishes.length)];
+        }
+
+        function createFallingHearts() {
+            const heart = document.createElement("div");
+            heart.classList.add("heart");
+            heart.innerHTML = "❤";
+            heart.style.left = Math.random() * (window.innerWidth - 30) + "px";
+            document.body.appendChild(heart);
+            setTimeout(() => heart.remove(), 5000);
+        }
+
+        function firecrackerEffect() {
+            for (let i = 0; i < 5; i++) {
+                setTimeout(() => {
+                    let firecracker = document.createElement("div");
+                    firecracker.classList.add("firecracker");
+                    firecracker.innerHTML = "🎆";
+                    firecracker.style.left = Math.random() * (window.innerWidth - 50) + "px";
+                    firecracker.style.top = Math.random() * (window.innerHeight - 50) + "px";
+                    document.body.appendChild(firecracker);
+                    setTimeout(() => firecracker.remove(), 2000);
+                }, i * 200);
+            }
+        }
+    </script>
+
+</body>
+</html>
